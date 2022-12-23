@@ -1,0 +1,121 @@
+@use "../../colors/colors" as *;
+@use "../../mixins/grid-template" as *;
+@use "../../mixins/flex" as *;
+nav {
+    padding: 20px 0;
+    background: var(--bg);
+    color: #1a1a1a;
+    z-index: 1000000;
+    box-shadow: var(--box-shadow);
+    @media (min-width: 991px) {
+        position: sticky;
+        top: 0;
+    }
+    @media (max-width: 991px) {
+        position: fixed;
+        transition: 0.3s all ease-in-out;
+        bottom: -0;
+        transform: translateY(74%);
+        left: 0;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 20px;
+        box-shadow: 0px 2px 20px 2px rgb(0 0 0 / 18%);
+        z-index: 1000;
+    }
+    @media (max-width: 500px) {
+        transform: translateY(75%);
+    }
+    &.special {
+        transform: translateY(0);
+    }
+    .container {
+        @include flex(space-between, center, null);
+        @media (max-width: 991px) {
+            flex-direction: column;
+        }
+        .box {
+            @include flex(space-between, center, null);
+            @media (max-width: 991px) {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .logo {
+                letter-spacing: 1px;
+                text-shadow: 0px 0 2px var(--main);
+                color: var(--main);
+                @media (max-width: 767px) {
+                    font-size: 20px;
+                }
+            }
+            .app-icon {
+                display: none;
+                font-size: 33px;
+                cursor: pointer;
+                transition: 0.3s color ease-in-out;
+                color: var(--name);
+                &:hover {
+                    color: var(--main);
+                }
+                @media (max-width: 991px) {
+                    @include flex(center, center, null);
+                }
+            }
+        }
+        .links {
+            @include flex(null, null, 30px);
+            @media (max-width: 991px) {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                width: 100%;
+                gap: 10px;
+                &.special {
+                    transform: translateX(0);
+                }
+            }
+            @media (max-width: 500px) {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+            li {
+                a {
+                    transition: 0.1s all ease-in-out;
+                    transition: 0.1s all ease-in-out;
+                    position: relative;
+                    @include flex(null, center, 8px);
+                    cursor: pointer;
+                    @media (max-width: 991px) {
+                        @include flex(center, center, 10px);
+                        flex-direction: column;
+                        padding: 20px 5px;
+                        background: var(--bg);
+                        border-radius: 10px;
+                        text-align: center;
+                    }
+                    &::before {
+                        transition: 0.1s all ease-in-out;
+                        content: "";
+                        position: absolute;
+                        left: 50%;
+                        top: -20px;
+                        @media (max-width: 991px) {
+                            top: 5px;
+                        }
+                        width: 8px;
+                        height: 8px;
+                        transform: translateX(-50%);
+                        border-radius: 50%;
+                        background: var(--main);
+                        opacity: 0;
+                    }
+                    &:hover::before {
+                        opacity: 1;
+                    }
+                    &:hover {
+                        color: var(--main);
+                    }
+                }
+            }
+        }
+    }
+}

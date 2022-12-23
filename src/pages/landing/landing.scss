@@ -1,0 +1,118 @@
+@use "../../colors/colors" as *;
+@use "../../mixins/flex" as *;
+.landing {
+    background: var(--bg);
+    min-height: calc(100vh - 85px);
+    position: relative;
+    @include flex(center, center, null);
+    .container {
+        @include flex(space-between, center, 100px);
+        position: relative;
+        @media (max-width: 991px) {
+            flex-direction: column;
+        }
+        .landing__image {
+            @media (max-width: 991px) {
+                position: absolute;
+                z-index: 1;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    background: var(--bg);
+                    opacity: 0.85;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .landing__box {
+            @include flex(null, center, 10px);
+            flex-direction: column;
+            flex: 1;
+            z-index: 2;
+            .content {
+                line-height: 1.5;
+                letter-spacing: 2px;
+                color: var(--text);
+                text-align: center;
+                font-weight: 300;
+                @media (max-width: 767px) {
+                    font-size: 30px;
+                }
+                @media (max-width: 500px) {
+                    font-size: 25px;
+                }
+                .frontend {
+                    color: $sky;
+                    text-shadow: 0px 0 4px $sky;
+                }
+                .electronic {
+                    color: $yellow;
+                    text-shadow: 0px 0 4px $yellow;
+                }
+                .communication {
+                    color: $sunny;
+                    text-shadow: 0px 0 4px $sunny;
+                }
+                .backend {
+                    color: #8993be;
+                    text-shadow: 0px 0 4px #8993be;
+                }
+                .backend,
+                .communication,
+                .electronic,
+                .frontend {
+                    font-weight: bold;
+                }
+            }
+            .icons {
+                @include flex(null, null, 25px);
+                @media (max-width: 767px) {
+                    gap: 10px;
+                }
+                li {
+                    font-size: 50px;
+                    @media (max-width: 767px) {
+                        font-size: 35px;
+                    }
+                }
+                li.state {
+                    position: relative;
+                    @include flex(center, center, null);
+                    .loader {
+                        width: 60px;
+                        height: 60px;
+                        background: transparent;
+                        border-radius: 50%;
+                        border: 4px var(--main);
+                        border-style: solid dotted dotted dotted;
+                        animation: loader 2s ease infinite;
+                        @media (max-width: 767px) {
+                            width: 50px;
+                            height: 50px;
+                        }
+                    }
+                    .loader-content {
+                        font-size: 10px;
+                        font-weight: bold;
+                        position: absolute;
+                        color: var(--name);
+                        @media (max-width: 767px) {
+                            font-size: 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// animations
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

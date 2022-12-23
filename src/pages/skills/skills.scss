@@ -1,0 +1,75 @@
+@use "../../colors/colors" as *;
+@use "../../mixins/gradient-text" as *;
+@use "../../mixins/grid-template" as *;
+@use "../../mixins/flex" as *;
+.skills {
+    background-color: #fff;
+    position: relative;
+    background-image: url("../../assets/skills.svg");
+    .container {
+        .skills__boxes {
+            @include grid(250px);
+            position: relative;
+            z-index: 1;
+            .box {
+                padding: 20px;
+                background: var(--main);
+                color: #fff;
+                border-radius: 15px;
+                @include flex(space-between,
+                center,
+                30px);
+                flex-direction: column;
+                text-align: center;
+                box-shadow: var(--box-shadow);
+                .icon {
+                    font-size: 50px;
+                    text-align: center;
+                    background: #fff;
+                    padding: 16px;
+                    color: var(--main);
+                    @include flex(center,
+                    center,
+                    null);
+                    animation: radius 6s ease-in-out infinite 1s;
+                }
+                .details {
+                    color: #ddd;
+                    line-height: 1.7;
+                }
+                button {
+                    @include flex(center,
+                    center,
+                    null);
+                    background: #fff;
+                    color: var(--main);
+                    svg {
+                        font-size: 22px;
+                        animation: move-arrow 0.5s ease-in-out infinite alternate-reverse;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@keyframes move-arrow {
+    0% {
+        transform: translateX(15px);
+    }
+    100% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes radius {
+    0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+}

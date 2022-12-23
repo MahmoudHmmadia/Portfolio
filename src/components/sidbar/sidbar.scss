@@ -1,0 +1,97 @@
+@use "../../colors/colors" as *;
+@use "../../mixins/flex" as *;
+.sidebar-container {
+    position: absolute;
+    bottom: 0;
+    padding: 10px;
+    width: 100%;
+    left: 0;
+    z-index: 10;
+    background: var(--gradient);
+    box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+    @include flex(null, null, 20px);
+    flex-direction: column;
+    .sidbar {
+        @include flex(center, center, 20px);
+        li {
+            a {
+                color: var(--footer);
+                font-size: 30px;
+                cursor: pointer;
+                @include flex(null, center, 10px);
+                @media (max-width: 767px) {
+                    font-size: 25px;
+                }
+            }
+            span {
+                @include flex(null, center, null);
+            }
+            &:last-child {
+                cursor: auto;
+            }
+            .toggle {
+                width: 60px;
+                height: 30px;
+                cursor: pointer;
+                @media (max-width: 767px) {
+                    width: 40px;
+                    height: 15px;
+                }
+                background-color: var(--footer);
+                border-radius: 20px;
+                position: relative;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 10%;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 25px;
+                    height: 25px;
+                    transition: 0.3s all ease-in-out;
+                    @media (max-width: 767px) {
+                        width: 11.5px;
+                        height: 11.5px;
+                    }
+                    border-radius: 50%;
+                    background-color: var(--main);
+                }
+                &.move {
+                    &::before {
+                        left: 46%;
+                    }
+                }
+            }
+            span {
+                transition: 0.3s all ease-in-out;
+            }
+            &.light-theme {
+                span.dark {
+                    opacity: 0.5;
+                }
+            }
+            &.dark-theme {
+                span.light {
+                    opacity: 0.5;
+                }
+            }
+            &.theme {
+                color: var(--footer);
+                font-size: 30px;
+                cursor: pointer;
+                @include flex(null, center, 10px);
+                @media (max-width: 767px) {
+                    font-size: 25px;
+                }
+            }
+        }
+    }
+    footer {
+        text-align: center;
+        font-weight: bold;
+        letter-spacing: 2px;
+        font-size: 20px;
+        color: var(--footer);
+        text-shadow: 0 0 3px var(--footer);
+    }
+}

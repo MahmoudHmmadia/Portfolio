@@ -1,0 +1,212 @@
+@use "./colors/colors" as *;
+@use "./mixins/gradient-text" as *;
+@use "./mixins/flex" as *;
+:root {
+    --main: #2dc1e4;
+    --gradient: linear-gradient(90deg, #2dc1e4 0%, #e8ecc7 100%);
+    --bg: linear-gradient(90deg, #fdfbfb 0%, #eceeef 100%);
+    --text: #666;
+    --name: #000;
+    --box-shadow: 0px 12px 20px 0px rgb(0 0 0 / 13%), 0px 2px 4px 0px rgb(0 0 0 / 12%);
+    --footer: #fff;
+}
+
+*,
+*::after,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: $gradient-cloudy;
+    font-family: "Cairo", sans-serif;
+    // font-family: "Ubuntu", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text);
+}
+
+img {
+    max-width: 100%;
+    object-fit: cover;
+}
+
+#root {
+    position: relative;
+}
+
+.section {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    background: var(--bg);
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: var(--bg);
+        opacity: 0.9;
+    }
+}
+
+ul {
+    list-style: none;
+}
+
+button,
+.button {
+    letter-spacing: 2px;
+    padding: 15px 35px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    color: var(--text);
+    @media (max-width: 600px) {
+        padding: 10px 25px;
+        font-size: 12px;
+    }
+}
+
+.container {
+    padding: 0 40px !important;
+    margin: 0 auto;
+    @include flex(center, center, null);
+    @media (max-width: 400px) {
+        padding: 0 15px !important;
+    }
+}
+
+.cool-title {
+    width: fit-content;
+    margin: 0 auto 50px;
+    padding: 10px 20px;
+    position: relative;
+    color: var(--footer);
+    z-index: 1;
+    animation: cool-title-color 5s ease-in-out alternate-reverse infinite;
+    -webkit-text-stroke: 1px var(--main);
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: var(--gradient);
+        left: 0;
+        top: 0;
+        z-index: -1;
+        transition: 2s all ease-in-out;
+        animation: cool-title-effects 5s ease-in-out alternate-reverse infinite;
+    }
+}
+
+.cool-title-plus {
+    width: fit-content;
+    margin: 0 auto 60px;
+    padding: 15px;
+    @include gradient-text(var(--gradient));
+    position: relative;
+    border-radius: 50%;
+    z-index: 1;
+    div {
+        position: absolute;
+        padding: 10px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transition: 0.3s all ease-in-out;
+        animation: cool-title-plus 5s linear infinite;
+        &::before,
+        &::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient);
+            border-radius: 50%;
+        }
+        &::before {
+            left: -10px;
+            top: -10px;
+        }
+        &::after {
+            right: -10px;
+            bottom: -10px;
+        }
+    }
+}
+
+
+/* small */
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+
+/* medium */
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+
+/* larg */
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+@keyframes cool-title-effects {
+    0% {
+        transform: unset;
+        border-radius: 8px;
+    }
+    100% {
+        transform: scale(0) rotate(-360deg);
+        border-radius: 50%;
+    }
+}
+
+@keyframes cool-title-color {
+    0% {
+        color: var(--footer);
+    }
+    100% {
+        color: var(--main);
+    }
+}
+
+@keyframes cool-title-plus {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(90deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    75% {
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

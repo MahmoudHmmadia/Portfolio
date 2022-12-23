@@ -1,0 +1,162 @@
+@use "../../colors/colors" as *;
+@use "../../mixins/gradient-text" as *;
+@use "../../mixins/grid-template" as *;
+@use "../../mixins/flex" as *;
+.contact {
+    background-image: url("../../assets/contactbg.svg");
+    @media (max-width: 500px) {
+        padding-bottom: 150px;
+    }
+    .container {
+        display: block;
+        z-index: 1;
+        position: relative;
+        .contact__boxes {
+            @include flex(center,
+            null,
+            null);
+            margin-bottom: 30px;
+            @media (max-width: 767px) {
+                flex-direction: column;
+            }
+            .box {
+                flex-basis: 50%;
+                @media (max-width: 767px) {
+                    width: 100%;
+                }
+                form {
+                    @include flex(center,
+                    center,
+                    20px);
+                    padding: 30px;
+                    flex-direction: column;
+                    .input_container {
+                        @include flex(center,
+                        null,
+                        null);
+                        position: relative;
+                        width: 100%;
+                        input,
+                        textarea {
+                            flex: 1;
+                            width: 100%;
+                            padding: 15px 10px;
+                            outline: none;
+                            border: none;
+                            background: var(--bg);
+                            letter-spacing: 1px;
+                            border-radius: 8px;
+                            border: 3px solid var(--main);
+                            box-shadow: var(--box-shadow);
+                            color: var(--name);
+                        }
+                        label {
+                            position: absolute;
+                            left: 20px;
+                            color: var(--text);
+                            letter-spacing: 1px;
+                            font-size: 14px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            transition: 0.3s all ease-in-out;
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                left: 50%;
+                                top: 50%;
+                                transform: translate(-50%, -50%);
+                                width: 118%;
+                                z-index: -1;
+                                height: 0;
+                                background: var(--bg);
+                                transition: 0.3s all ease-in-out;
+                            }
+                        }
+                        textarea {
+                            height: 200px;
+                            resize: none;
+                        }
+                        &.message label {
+                            top: 20px;
+                        }
+                        &.focus {
+                            label {
+                                font-weight: bold;
+                                top: 0;
+                                font-size: 12px;
+                                &::before {
+                                    height: 7px;
+                                }
+                            }
+                        }
+                    }
+                    button {
+                        background-color: var(--main);
+                        color: var(--footer);
+                        @include flex(center,
+                        center,
+                        8px);
+                        svg {
+                            font-size: 20px;
+                        }
+                    }
+                }
+            }
+        }
+        .social {
+            text-align: center;
+            h1 {
+                margin-bottom: 30px;
+                letter-spacing: -1px;
+                color: var(--main);
+                text-shadow: 0px 0 2px var(--main);
+                @media (max-width: 767px) {
+                    font-size: 30px;
+                }
+                @media (max-width: 500px) {
+                    font-size: 25px;
+                }
+            }
+            .social__list {
+                @include grid(200px);
+                li {
+                    position: relative;
+                    box-shadow: var(--box-shadow);
+                    padding: 30px;
+                    @include flex(null,
+                    null,
+                    20px);
+                    flex-direction: column;
+                    overflow: hidden;
+                    background: var(--bg);
+                    border-radius: 20px;
+                    transition: 0.3s all ease-in-out;
+                    .icon {
+                        font-size: 50px;
+                    }
+                    .address {
+                        color: var(--text);
+                        letter-spacing: 2px;
+                    }
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        width: 0%;
+                        height: 2%;
+                        border-radius: 20px;
+                        left: 0;
+                        top: 0;
+                        background-color: var(--main);
+                        transition: 0.3s all ease-in-out;
+                    }
+                    &:hover {
+                        transform: translateY(-10px);
+                        &::after {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
