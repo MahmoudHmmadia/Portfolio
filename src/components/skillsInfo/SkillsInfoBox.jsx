@@ -1,8 +1,9 @@
+/* eslint-disable array-callback-return */
 import React from "react";
 import { skillsInfo } from "../../data/data";
 import { nanoid } from "nanoid";
 import { IoMdCloseCircle } from "react-icons/io";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ContextP } from "../../contexts/ContextProvider";
 import "./skills-info.scss";
 const SkillsInfoBox = ({ name }) => {
